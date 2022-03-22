@@ -32,7 +32,10 @@ class StudentDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
+        arguments?.let {
+            val idPerson = StudentDetailFragmentArgs.fromBundle(requireArguments()).idStudent
+            viewModel.fetch(idPerson)
+        }
         observeViewModel()
     }
     fun observeViewModel() {
